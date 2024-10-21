@@ -1,6 +1,7 @@
 import { Button, Card, CardContent, Typography, styled } from '@mui/material'
 import React from 'react'
 
+
 // Styled component for the triangle shaped background image
 const TriangleImg = styled('img')({
     right: 0,
