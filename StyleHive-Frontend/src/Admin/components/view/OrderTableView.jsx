@@ -168,8 +168,6 @@ import {
                   <TableCell>Price</TableCell>
                   <TableCell>Id</TableCell>
                   <TableCell sx={{ textAlign: "center" }}>Status</TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>Update</TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>Delete</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -234,17 +232,6 @@ import {
                     >
                       {/* <Button>{item.orderStatus==="PENDING"?"PENDING": item.orderStatus==="PLACED"?"CONFIRMED":item.orderStatus==="CONFIRMED"?"SHIPPED":"DELEVERED"}</Button> */}
                       <div>
-                        <Button
-                          id={`basic-button-${item?._id}`}
-                          aria-controls={`basic-menu-${item._id}`}
-                          aria-haspopup="true"
-                          aria-expanded={Boolean(anchorElArray[index])}
-                          onClick={(event) =>
-                            handleUpdateStatusMenuClick(event, index)
-                          }
-                        >
-                          Status
-                        </Button>
                         <Menu
                           id={`basic-menu-${item?._id}`}
                           anchorEl={anchorElArray[index]}
@@ -277,12 +264,6 @@ import {
                       sx={{ textAlign: "center" }}
                       className="text-white"
                     >
-                      <Button
-                        onClick={() => handleDeleteOrder(item._id)}
-                        variant="text"
-                      >
-                        delete
-                      </Button>
                     </TableCell>
                   </TableRow>
                 ))}

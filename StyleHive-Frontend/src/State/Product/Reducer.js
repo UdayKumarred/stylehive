@@ -21,7 +21,7 @@ import {
     product: null,
     loading: false,
     error: null,
-    // deleteProduct:null,
+    deleteProduct:null,
   };
   
   const customerProductReducer = (state = initialState, action) => {
@@ -83,21 +83,21 @@ import {
     //         loading: true,
     //         error: null,
     //       };
-    //     case DELETE_PRODUCT_SUCCESS:
-    //       console.log("dlete ",state.products)
-    //       return {
-    //         ...state,
-    //         loading: false,
-    //         deleteProduct:action.payload
-            
-            
-    //       };
-    //     case DELETE_PRODUCT_FAILURE:
-    //       return {
-    //         ...state,
-    //         loading: false,
-    //         error: action.payload,
-    //       };
+        case DELETE_PRODUCT_SUCCESS:
+          console.log("delete ",state.products)
+          return {
+            ...state,
+            loading: false,
+            error:null,
+            // products:state.products.filter((item)=>item._id!==action.payload)
+            deleteProduct:action.payload,
+          };
+        case DELETE_PRODUCT_FAILURE:
+          return {
+            ...state,
+            loading: false,
+            error: action.payload,
+          };
       default:
         return state;
     }
