@@ -43,10 +43,14 @@ export const login = userData => async dispatch => {
     const response = await axios.post(`${API_BASE_URL}/auth/signin`, userData);
     const user = response.data;
     if(user.jwt) localStorage.setItem("jwt",user.jwt)
-    console.log("user ",user)
+    console.log("user info is",user)
     dispatch(loginSuccess(user.jwt));
   } catch (error) {
-    dispatch(loginFailure(error.message));
+    console.log("user info fail")
+    const errorMessage = error.response && error.response.status === 401
+      ? "Invalid password"
+      : error.message;
+    dispatch(loginFailure(errorMessage));
   }
 };
 

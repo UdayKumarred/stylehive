@@ -22,20 +22,27 @@ const login=async(req,res)=>{
     const {password,email}=req.body
     try {
         const user = await userService.getUserByEmail(email);
-
+        console.log("user info is",user)
         if (!user) {
             return res.status(404).json({ message: 'User not found With Email ', email});
         }
 
-        const isPasswordValid=await bcrypt.compare(password,user.password)
+        // const isPasswordValid=await bcrypt.compare(password,user.password)
 
-        if(!isPasswordValid){
+        // if(!isPasswordValid){
+        //     return res.status(401).json({ message: 'Invalid password' });
+        // }
+
+        // const jwt=jwtProvider.generateToken(user._id);
+
+        // return res.status(200).send({jwt,message:"login success"});
+        
+        if (password === user.password) {
+            const jwt = jwtProvider.generateToken(user._id);
+            return res.status(200).send({ jwt, message: "Login successful" });
+        } else {
             return res.status(401).json({ message: 'Invalid password' });
         }
-
-        const jwt=jwtProvider.generateToken(user._id);
-
-        return res.status(200).send({jwt,message:"login success"});
 
     } catch (error) {
         return res.status(500).send({error:error.message})

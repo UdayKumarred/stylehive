@@ -1,7 +1,8 @@
-import * as React from "react";
-import { Grid, TextField, Button, Box, Snackbar, Alert } from "@mui/material";
+// import * as React from "react";
+import React, { useEffect } from "react";
+import { Grid, TextField, Button, Box, Snackbar, Alert ,Typography} from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { login } from "../../State/Auth/Action";
 // import { useDispatch, useSelector } from "react-redux";
 // import { getUser, login } from "../../../Redux/Auth/Action";
@@ -13,7 +14,7 @@ export default function LoginUserForm({ handleNext }) {
   const dispatch= useDispatch();
 //   const jwt=localStorage.getItem("jwt");
 //   const [openSnackBar,setOpenSnackBar]=useState(false);
-//   const { auth } = useSelector((store) => store);
+  const { auth } = useSelector((store) => store);
 //   const handleCloseSnakbar=()=>setOpenSnackBar(false);
 //   useEffect(()=>{
 //     if(jwt){
@@ -41,6 +42,13 @@ export default function LoginUserForm({ handleNext }) {
     dispatch(login(userData));
 
   };
+  
+  useEffect(() => {
+    // Navigate to the home page if login is successful
+    if (auth.jwt) {
+      navigate("/");
+    }
+  }, [auth.jwt, navigate]);
 
   return (
     <React.Fragment className=" shadow-lg ">
@@ -52,6 +60,7 @@ export default function LoginUserForm({ handleNext }) {
               id="email"
               name="email"
               label="Email"
+              type="email"
               fullWidth
               autoComplete="given-name"
             />
@@ -67,6 +76,14 @@ export default function LoginUserForm({ handleNext }) {
               type="password"
             />
           </Grid>
+
+          {auth.error && (
+            <Grid item xs={12}>
+              <Typography color="error" variant="body2">
+                {auth.error === "Invalid password" ? "Invalid password" : auth.error}
+              </Typography>
+            </Grid>
+          )}
 
           <Grid item xs={12}>
             <Button
@@ -94,6 +111,7 @@ export default function LoginUserForm({ handleNext }) {
           {auth.error?auth.error:auth.user?"Register Success":""}
         </Alert>
       </Snackbar> */}
+      
     </React.Fragment>
   );
 }

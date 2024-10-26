@@ -79,6 +79,7 @@ if(auth.user){
 const handleLogout=()=>{
   dispatch(logout())
   handleCloseUserMenu()
+  navigate("/"); 
 } 
 
   return (
@@ -268,13 +269,14 @@ const handleLogout=()=>{
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
    
-                  <span className="sr-only">Your Company</span>
+                  <span className="sr-only">Style Hive</span>
+                  <a href="/" className="flex items-center">
                   <img
                     src="https://res.cloudinary.com/ddkso1wxi/image/upload/v1675919455/Logo/Copy_of_Zosh_Academy_nblljp.png"
                     alt="Shopwithzosh"
                     className="h-8 w-8 mr-2"
                   />
-          
+          </a>
               </div>
 
               {/* Flyout menus */}
@@ -446,7 +448,7 @@ const handleLogout=()=>{
                           "aria-labelledby": "basic-button",
                         }}
                       >
-                        <MenuItem onClick={handleCloseUserMenu}>
+                        <MenuItem onClick={()=>navigate("/account/profile")}>
                           Profile
                         </MenuItem>
                         

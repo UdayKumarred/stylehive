@@ -73,6 +73,7 @@ useEffect(()=>{
               id="email"
               name="email"
               label="Email"
+              type='email'
               fullWidth
               autoComplete="given-name"
             />

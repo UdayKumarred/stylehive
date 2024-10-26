@@ -92,10 +92,41 @@ const getAllUsers=async()=>{
     }
 }
 
+const updateUserProfile = async (userId, updateData) => {
+    try {
+        const user = await User.findById(userId);
+
+        if (!user) {
+            throw new Error("User not found");
+        }
+
+        console.log("Updated User Before Save:", user);
+
+        // Update fields if provided
+        if (updateData.firstName) user.firstName = updateData.firstName;
+        if (updateData.lastName) user.lastName = updateData.lastName;
+        if (updateData.email) user.email = updateData.email;
+        if (updateData.password) user.password = updateData.password;
+
+     
+
+        const updatedUser = await user.save(); // Save updated user
+
+        console.log("Saved User:", updatedUser);
+        
+        return updatedUser;
+    } catch (error) {
+        console.log("Error updating user profile: ", error.message);
+        throw new Error(error.message);
+    }
+};
+
+
 module.exports={
     createUser,
     findUserById,
     getUserProfileByToken,
     getUserByEmail,
-    getAllUsers
+    getAllUsers,
+    updateUserProfile
 }
