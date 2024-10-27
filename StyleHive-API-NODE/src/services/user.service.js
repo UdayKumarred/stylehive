@@ -15,7 +15,7 @@ const createUser = async (userData)=>{
             throw new Error("user already exist with email : ",email)
         }
 
-        password=await bcrypt.hash(password,8);
+        // password=await bcrypt.hash(password,8);
     
         const user=await User.create({firstName,lastName,email,password,role})
 
