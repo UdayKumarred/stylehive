@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser, register } from "../../State/Auth/Action";
 import { useEffect } from "react";
 
-// import { Fragment, useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function RegisterUserForm({ handleNext }) {
   const navigate = useNavigate();
@@ -14,6 +14,8 @@ export default function RegisterUserForm({ handleNext }) {
 //   const handleClose=()=>setOpenSnackBar(false);
 
   const jwt=localStorage.getItem("jwt");
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
 useEffect(()=>{
   if(jwt){
@@ -22,6 +24,16 @@ useEffect(()=>{
 
 },[jwt,auth.jwt])
 
+const handlePasswordChange = (event) => {
+  const input = event.target.value;
+  setPassword(input);
+
+  if (input.length < 8) {
+    setPasswordError("Password must be at least 8 characters.");
+  } else {
+    setPasswordError("");
+  }
+};
 
   // useEffect(() => {
   //   if (auth.user || auth.error) setOpenSnackBar(true)
@@ -31,6 +43,12 @@ useEffect(()=>{
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // // eslint-disable-next-line no-console
+
+    if (password.length < 8) {
+      setPasswordError("Password must be at least 8 characters.");
+      return; // Prevent submission if password is too short
+    }
+
     const userData={
       firstName: data.get("firstName"),
       lastName: data.get("lastName"),
@@ -87,8 +105,14 @@ useEffect(()=>{
               fullWidth
               autoComplete="given-name"
               type="password"
+              ivalue={password}
+              onChange={handlePasswordChange}
+              error={!!passwordError} // Shows error styling if password is too short
+              helperText={passwordError} // Displays the error message
+              inputProps={{ minLength: 8 }}
             />
           </Grid>
+          
 
           <Grid item xs={12}>
             <Button
