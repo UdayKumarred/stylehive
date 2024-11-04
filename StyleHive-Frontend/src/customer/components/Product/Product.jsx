@@ -103,7 +103,7 @@ export default function Product() {
       minDiscount: disccount || 0,
       sort: sortValue || "price_low",
       pageNumber: pageNumber,
-      pageSize: 10,
+      pageSize: 5,
       stock: stock,
     };
     dispatch(findProducts(data));
