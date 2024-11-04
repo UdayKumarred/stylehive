@@ -11,7 +11,7 @@ const createPaymentLink= async (orderId)=>{
         console.log(orderId)
         const paymentLinkRequest = {
           amount: order.totalDiscountedPrice * 100,
-          
+
           currency: 'INR',
           customer: {
             name: order.user.firstName + ' ' + order.user.lastName,
