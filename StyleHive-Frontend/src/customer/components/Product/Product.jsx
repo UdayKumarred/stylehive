@@ -38,7 +38,11 @@ export default function Product() {
   const navigate = useNavigate()
   const param = useParams()
   const dispatch = useDispatch();
+  //original
   const {products}=useSelector(store=>store)
+
+
+  console.log("product data",products)
 
   const decodedQueryString = decodeURIComponent(location.search)
   const searchParams = new URLSearchParams(decodedQueryString);

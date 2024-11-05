@@ -86,7 +86,7 @@ import { deleteProduct, findProducts } from "../../State/Product/Action";
   
     return (
       <Box width={"100%"}>
-        <Card className="p-3">
+        {/* <Card className="p-3">
           <CardHeader
             title="Sort"
             sx={{
@@ -149,7 +149,7 @@ import { deleteProduct, findProducts } from "../../State/Product/Action";
               </FormControl>
             </Grid>
           </Grid>
-        </Card>
+        </Card> */}
         <Card className="mt-2">
           <CardHeader
             title="All Products"
