@@ -42,7 +42,7 @@ export default function Product() {
   const {products}=useSelector(store=>store)
 
 
-  console.log("product data",products)
+  console.log("product data is",products)
 
   const decodedQueryString = decodeURIComponent(location.search)
   const searchParams = new URLSearchParams(decodedQueryString);

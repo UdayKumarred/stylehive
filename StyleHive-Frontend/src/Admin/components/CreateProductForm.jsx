@@ -81,11 +81,19 @@ const jwt=localStorage.getItem("jwt")
   //   }));
   // };
 
+  ////Original
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   dispatch(createProduct(productData))
+  //   console.log(productData);
+  // };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createProduct(productData))
+    dispatch(createProduct({data:productData,jwt}))
     console.log(productData);
   };
+
 
   // const handleAddProducts=(data)=>{
   //   for(let item of data){
