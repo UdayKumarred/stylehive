@@ -10,6 +10,7 @@ const TriangleImg = styled('img')({
     position: 'absolute'
   })
 
+  
   // Styled component for the trophy image
 const TrophyImg = styled('img')({
     right: 36,
