@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Typography } from "@mui/material";
+import { Typography, Alert,Box } from "@mui/material";
 import {
   Grid,
   TextField,
@@ -9,6 +9,7 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
+
 
 import { Fragment } from "react";
 import "./CreateProductForm.css";
@@ -42,6 +43,8 @@ const CreateProductForm = () => {
   });
 const dispatch=useDispatch();
 const jwt=localStorage.getItem("jwt")
+const [success, setSuccess] = useState(false);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -91,6 +94,7 @@ const jwt=localStorage.getItem("jwt")
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createProduct({data:productData,jwt}))
+    setSuccess(true); // Show success message
     console.log(productData);
   };
 
@@ -114,6 +118,7 @@ const jwt=localStorage.getItem("jwt")
       >
         Add New Product
       </Typography>
+
       <form
         onSubmit={handleSubmit}
         className="createProductContainer min-h-screen"
@@ -281,8 +286,9 @@ const jwt=localStorage.getItem("jwt")
               </Grid> </Grid>
             
           ))}
-          <Grid item xs={12} >
-            <Button
+          <Grid item xs={12}>
+          <Box display="flex" justifyContent="center" mt={2}>
+           <Button
               variant="contained"
               sx={{ p: 1.8 }}
               className="py-20"
@@ -291,6 +297,13 @@ const jwt=localStorage.getItem("jwt")
             >
               Add New Product
             </Button>
+            </Box>
+            {/* Success message */}
+            {success && (
+              <Alert severity="success" sx={{ mb: 2 }}>
+                Product created successfully!
+              </Alert>
+            )}
             {/* <Button
               variant="contained"
               sx={{ p: 1.8 }}
