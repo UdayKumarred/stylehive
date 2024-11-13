@@ -40,7 +40,7 @@ const Cart = () => {
                 </div>
                 <div className="flex justify-between">
                   <span>Discount</span>
-                  <span className="text-green-700">-${cart.cart?.discounte}</span>
+                  <span className="text-green-700">${cart.cart?.discounte}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Delivery Charges</span>
