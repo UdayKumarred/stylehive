@@ -55,7 +55,7 @@ const Admin=()=> {
           <List>
             
               <ListItem  disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={()=>navigate("/")}>
                   <ListItemIcon>
                     <AccountCircleIcon/>
                   </ListItemIcon>
