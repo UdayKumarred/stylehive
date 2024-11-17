@@ -1,5 +1,5 @@
 Commit codes Team 3
 
-QA Deployment testing jenkins November for slack notification 
+QA Deployment for slack notification 
 
 Jenkins QA testing for Sprint 2....
