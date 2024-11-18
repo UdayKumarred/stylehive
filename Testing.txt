@@ -3,3 +3,4 @@ Commit codes Team 3
 QA Deployment for slack notification 
 
 Jenkins QA testing for Sprint 2....email noti applied
+for both qa and dev
