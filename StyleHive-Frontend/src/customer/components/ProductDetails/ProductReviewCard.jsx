@@ -1,47 +1,52 @@
-import React from "react";
-import { Avatar, Grid2 } from "@mui/material";
-import { Rating, Box, Typography, Grid } from "@mui/material";
+import React, { useState, useEffect } from 'react';
+import { api } from '/Users/ananthulasaivyshnav/Documents/S3 F/stylehive/StyleHive-Frontend/src/config/apiConfig.js';
+ // Make sure apiConfig is set correctly
 
-const ProductReviewCard = () => {
+const ProductReviews = ({ productId }) => {
+  const [reviews, setReviews] = useState([]);
+  const [message, setMessage] = useState('');
+
+  // Fetch reviews when the component is mounted or productId changes
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await api.get(`/api/reviews/product/${productId}`); // Fetch reviews for a specific product
+        setReviews(response.data); // Store reviews in state
+      } catch (error) {
+        // setMessage('Error fetching reviews. Please try again.');
+      }
+    };
+
+    fetchReviews();
+  }, [productId]);
+
   return (
-    <div>
-      <Grid2 container spacing={2} gap={3}>
-        <Grid2 item xs={1}>
-          <Box>
-            <Avatar
-              className="text-white"
-              sx={{ width: 56, height: 56, bgcolor: "#9155FD" }}>
-              S
-            </Avatar>
-          </Box>
-        </Grid2>
-        <Grid2 item xs={9}>
-          <div className="space-y-2">
-            <div className="">
-              <p className="font-semibold text-lg">Vyshnav</p>
-              <p className="opacity-70">April 5, 2023</p>
-            </div>
-            <div>
-            
+    <div className="max-w-3xl mx-auto mt-10">
+      {/* <h2 className="text-2xl font-bold mb-6">Customer Reviews</h2> */}
 
-              <Rating
-                value={4.5}
-           
-                name="half-rating"
-                defaultValue={2.5}
-                precision={0.5}
-              />
-             
+      {/* Display message if there are issues fetching reviews */}
+      {message && (
+        <div className="p-2 bg-red-300 text-center">
+          {message}
+        </div>
+      )}
+
+      {/* Loop through and display each review */}
+      {reviews.length === 0 ? (
+        <p>No reviews yet for this product.</p>
+      ) : (
+        reviews.map((review) => (
+          <div key={review._id} className="mb-4 p-4 border border-gray-300 rounded-md">
+            <div className="flex items-center mb-2">
+              <p className="font-semibold text-lg">{review.user.name || 'Anonymous'}</p>
+              <span className="ml-2 text-gray-500">{new Date(review.createdAt).toLocaleString()}</span>
             </div>
-            <p>
-            Loren ipsum dolor
-            </p>
+            <p className="text-gray-700">{review.review}</p>
           </div>
-        </Grid2>
-      </Grid2>
-      <div className="col-span-1 flex"></div>
+        ))
+      )}
     </div>
   );
 };
 
-export default ProductReviewCard;
+export default ProductReviews;

@@ -11,6 +11,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { findProductsById } from '../../../State/Product/Action'
 import { addItemToCart } from '../../../State/Cart/Action'
+import ReviewForm from './ReviewForm'
 
 const product = {
     name: 'Basic Tee 6-Pack',
@@ -284,158 +285,18 @@ export default function ProductDetails() {
                 {/* Review and Ratings */}
                 <section className="">
                     <h1 className="font-semibold text-lg pb-4">
-                        Recent Review & Ratings
+                        Recent Product Reviews 
                     </h1>
 
                     <div className="border p-5">
                         <Grid container spacing={7}>
                             <Grid item xs={7}>
                                 <div className="space-y-5">
-
-                                    {[1, 1, 1].map((item) => <ProductReviewCard />)}
-
+                                <ProductReviewCard productId={products.product?._id}/>
                                 </div>
                             </Grid>
-
                             <Grid item xs={5} >
-                                {/* style={{ marginLeft: 'auto' }}  */}
-                                <h1 className="text-xl font-semibold pb-1"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Product Ratings</h1>
-                                <div className='flex items-center space-x-3'>
-                                    <Rating
-                                        value={4.6}
-                                        precision={.5}
-                                        readOnly
-                                    />
-
-                                    <p className="opacity-60">42807 Ratings</p>
-                                </div>
-                                <Box>
-                                    <Grid
-                                        container
-                                        justifyContent="center"
-                                        alignItems="center"
-                                        gap={2}
-                                    >
-                                        <Grid item xs={2}>
-                                            <p className="p-0">Excellent</p>
-                                        </Grid>
-                                        <Grid xs={7}>
-                                            <LinearProgress
-                                                // className=""
-                                                sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
-                                                variant="determinate"
-                                                value={40}
-                                                color="success"
-                                            />
-                                        </Grid>
-                                        <Grid xs={2}>
-                                            <p className="opacity-50 p-2">19259</p>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-                                <Box>
-                                    <Grid
-                                        container
-                                        justifyContent="center"
-                                        alignItems="center"
-                                        gap={2}
-                                    >
-                                        <Grid xs={2}>
-                                            <p className="p-0">Very Good</p>
-                                        </Grid>
-                                        <Grid xs={7}>
-                                            <LinearProgress
-                                                className=""
-                                                sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
-                                                variant="determinate"
-                                                value={30}
-                                                color="success"
-                                            />
-                                        </Grid>
-                                        <Grid xs={2}>
-                                            <p className="opacity-50 p-2">19259</p>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-                                <Box>
-                                    <Grid
-                                        container
-                                        justifyContent="center"
-                                        alignItems="center"
-                                        gap={2}
-                                    >
-                                        <Grid xs={2}>
-                                            <p className="p-0">Good</p>
-                                        </Grid>
-                                        <Grid xs={7}>
-                                            <LinearProgress
-                                                className="bg-[#885c0a]"
-                                                sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
-                                                variant="determinate"
-                                                value={25}
-                                                color="orange"
-                                            />
-                                        </Grid>
-                                        <Grid xs={2}>
-                                            <p className="opacity-50 p-2">19259</p>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-                                <Box>
-                                    <Grid
-                                        container
-                                        justifyContent="center"
-                                        alignItems="center"
-                                        gap={2}
-                                    >
-                                        <Grid xs={2}>
-                                            <p className="p-0">Avarage</p>
-                                        </Grid>
-                                        <Grid xs={7}>
-                                            <LinearProgress
-                                                className=""
-                                                sx={{
-                                                    bgcolor: "#d0d0d0",
-                                                    borderRadius: 4,
-                                                    height: 7,
-                                                    "& .MuiLinearProgress-bar": {
-                                                        bgcolor: "#885c0a", // stroke color
-                                                    },
-                                                }}
-                                                variant="determinate"
-                                                value={21}
-                                                color="success"
-                                            />
-                                        </Grid>
-                                        <Grid xs={2}>
-                                            <p className="opacity-50 p-2">19259</p>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
-                                <Box>
-                                    <Grid
-                                        container
-                                        justifyContent="center"
-                                        alignItems="center"
-                                        gap={2}
-                                    >
-                                        <Grid xs={2}>
-                                            <p className="p-0">Poor</p>
-                                        </Grid>
-                                        <Grid xs={7}>
-                                            <LinearProgress
-                                                className=""
-                                                sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
-                                                variant="determinate"
-                                                value={10}
-                                                color="error"
-                                            />
-                                        </Grid>
-                                        <Grid xs={2}>
-                                            <p className="opacity-50 p-2">19259</p>
-                                        </Grid>
-                                    </Grid>
-                                </Box>
+                                <ReviewForm productId={products.product?._id}/>
                             </Grid>
                         </Grid>
                     </div>
